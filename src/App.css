@@ -1,38 +1,110 @@
-.App {
-  text-align: center;
+body{
+  padding: 0;
+  margin: 0;
+  overflow-y: hidden;
 }
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.App{
   display: flex;
-  flex-direction: column;
-  align-items: center;
+  margin: 0;
+  padding: 0;
+}
+.aslide-left{
+  background: cadetblue;
+  height: 100vh;
+  width: 20%;
+  padding: 0;
+  margin: 0;
+  border-radius: 0px 50px 0px 0px;
+}
+.aslide-right{
+  height: 100vh;
+  width: 80%;
+  padding: 0;
+  margin: 0;
+  
+}
+.header{
+  background: white;
+  padding: 0;
+  margin: 0;
+}
+.header ul{
+  margin: 0;
+}
+.header ul li{
+  padding: 0;
+  margin: 0;
+  height: 50px
+}
+.header a{
+  height: 100%;
+  width: 100%;
+  display: flex;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  align-items: center;
 }
-
-.App-link {
-  color: #61dafb;
+.main{
+  height: calc(100vh - 50px);
+  background: gainsboro;
+  width: 100%;
 }
+.main-home{
+  height: 100%;
+}
+.home-title-wrapper{
+  height: 30%;
+}
+.home-search-wrapper{
+  height: 30%;
+}
+.search-text{
+  border: 3px solid orangered;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  width: 40%;
+  margin: 20%;
+}
+.search-text input{
+  outline: none;
+  border: 0;
+  height: 100%;
+  width: 90%;
+  background: none;
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+}
+.search-text button{
+  width: 10%;
+  outline: none;
+  background: none;
+  border: none;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  transition: 0.5s all;
+}
+.search-text button:hover{
+  color: orangered
+}
+.home-search-wrapper{
+  display: flex;
+  align-items: center;
+}
+.create-post-wrapper{
+  height: 80px;
+  align-items: center;
+}
+.main{
+  overflow-y: auto;
+  background-size: cover;
+}
+.home-post-item{
+  margin-left: 10px;
+  margin-right: 10px;
+}
+.submit-create-post{
+  margin-top: 30px;
+}
+.input-image-create-post{
+  height: 45px
 }
