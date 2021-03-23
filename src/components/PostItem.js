@@ -1,7 +1,9 @@
 import { Component } from "react";
+import { Link } from "react-router-dom";
 
 class PostItem extends Component{
     render(){
+        console.log(this.props.url)
         return(
             <div className="item-post row">
                 <div className="col-md-4 mb-4">
@@ -13,13 +15,11 @@ class PostItem extends Component{
                     </div>
                 </div>
                 <div className="col-md-8 mb-4">
-                    <h5>Very long post title</h5>
-                    <p>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatibus ratione
-                    necessitatibus itaque error alias repellendus nemo reiciendis aperiam quisquam minus
-                    ipsam reprehenderit commodi ducimus, in dicta aliquam eveniet dignissimos magni.
+                    <h5>{this.props.title}</h5>
+                    <p className="content-post">
+                        {this.props.content}
                     </p>
-                    <button type="button" className="btn btn-info">Đọc chi tiết</button>
+                    <Link to={this.props.url} props="datalink"><button type="button" className="btn btn-info">Đọc chi tiết</button></Link>
                 </div>
             </div>
         )

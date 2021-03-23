@@ -108,3 +108,30 @@ body{
 .input-image-create-post{
   height: 45px
 }
+.content-post{
+    text-overflow: ellipsis;
+    overflow: hidden;
+    height: 50px;
+    width: 100%;
+    white-space: nowrap; 
+}
+.post-detail-image{
+  height: 300px;
+}
+.post-detail-title{
+  display: flex;
+  justify-content: center;
+  height: 70px;
+}
+.post-detail-content{
+  display: flex;
+  justify-content: center;
+}
+.post-detail-title h3{
+  width: 80%;
+}
+.post-detail-content p{
+  width: 80%;
+  background: #dbdbdb30;
+  padding: 10px;
+}
