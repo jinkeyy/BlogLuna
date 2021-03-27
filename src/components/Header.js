@@ -14,8 +14,6 @@ class Header extends Component{
                     <li className="header-about col-xl-2 nav-item">
                         <Link className="nav-link" data-toggle="tab" to="/about">About</Link>
                     </li>
-                    <li className="col-xl-2"></li>
-                    <li className="col-xl-2"></li>
                     <li className="header-signin col-xl-2 nav-item">
                         <Link className="nav-link" data-toggle="tab" to="/signin">SignIn</Link>
                     </li>

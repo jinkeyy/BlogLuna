@@ -3,7 +3,7 @@ import { Route, Router, Switch } from "react-router";
 import Home from "./Home";
 import Post from "./Post";
 import PostDetail from "./PostDetail";
-
+import SignIn from "./SignIn"
 class Main extends Component{
     
     render(){
@@ -17,6 +17,9 @@ class Main extends Component{
                     <Route path="/post/:id" exact component={PostDetail}>
                     </Route>
                     <Route path='/post' component={mainPost}>
+                    </Route>
+                    <Route path="/signin" component={SignIn}>
+                        
                     </Route>
                 </Switch>
             </div>

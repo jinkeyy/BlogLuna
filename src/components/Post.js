@@ -3,56 +3,92 @@ import { Route ,Link, Router} from "react-router-dom"
 import FormCreatePost from "./FormCreatePost";
 import PostItem from "./PostItem";
 import { connect } from "react-redux";
-import {fetchPosts} from "../actions"
+import {fetchPosts} from "../actions/index"
 import PostDetail from "./PostDetail"
 class Post extends Component{
-
-    constructor(props) {
+   constructor(props) {
         super(props);
         this.state = {
-            nowpage:1,
+            nowpage :1,
+            posts:this.props.postsOfComponent,
         };
     }
     componentDidMount() {
         this.props.fetchPosts();
     }
     setPage = (countpost)=>{
-    
-    }
+        this.setState({
+            nowpage :countpost
+        })
+    }   
     render(){
-        const posts = this.props.postsOfComponent
+        const posts = this.state.posts
         let { match } = this.props
         let url = match.url; 
-        let result  = posts.map((post,index)=>{
-            return(
-                <PostItem title={post.title} idPost={post.id} content={post.content} image={post.image} createAt={post.createAt} url={`${url}/${post.id}`}/>         
-            )
-        })
         ////////Phân trang
-        console.log("Bài viết: "+posts.length)
-        console.log("Số trang là "+Math.ceil(posts.length/3))
-        return(
-            <div className="main-post container">
+        let soBaiViet = posts.length
+        let soTrang = Math.ceil(posts.length/3)
+        let phanTrang=[];
+        if(soTrang<6){
+            for(let i = 0;i<soTrang;i++){
+                if(i+1 == this.state.nowpage){
+                    phanTrang.push(<li className="page-item active"><Link className="page-link" onClick={()=>this.setPage(i+1)}>{i+1}</Link></li>)
+                }
+                else{
+                    phanTrang.push(<li className="page-item"><Link className="page-link" onClick={()=>this.setPage(i+1)}>{i+1}</Link></li>)
+                }
+                
+            }
+        }
+        let baiViet = []
+        if(soBaiViet == 0){
+            baiViet.push(<div class="spinner-border text-info"></div>)
+        }
+        else{
+            if(this.state.nowpage === soTrang){
+                for(let i=(this.state.nowpage-1)*3;i<(soBaiViet);i++){
+                    console.log("Bài viết :"+i)
+                    baiViet.push(<PostItem onChangeDelete={()=>this.onChangeDelete()} title={posts[i].title} idPost={posts[i].id} content={posts[i].content} image={posts[i].image} createAt={posts[i].createAt} url={`${url}/${posts[i].id}`}/>)
+                }
+            }else{
+                for(let i=(this.state.nowpage-1)*3;i<(this.state.nowpage-1)*3+3;i++){
+                    console.log("Bài viết :"+i)
+                    baiViet.push(<PostItem title={posts[i].title} idPost={posts[i].id} content={posts[i].content} image={posts[i].image} createAt={posts[i].createAt} url={`${url}/${posts[i].id}`}/>)
+                }
+            }
+        }
+
+        let Addpost = []
+        if(localStorage.getItem("Username")){
+            Addpost.push(
                 <div className="row create-post-wrapper">
-                    <div className="col-10">
-                    </div>
-                    <div className="create-post col-2">
-                        <button type="button" className="btn btn-primary" data-toggle="modal" data-target="#create-post">Thêm bài viết mới</button>
-                    </div>
+                <div className="col-10">
                 </div>
+                <div className="create-post col-2">
+                    <button type="button" className="btn btn-primary" data-toggle="modal" data-target="#create-post">Thêm bài viết mới</button>
+                </div>
+            </div>        
+            )
+        }
+        return(
+            <div className="main-post container" >
+                <div className="space-post"></div>
+                {Addpost.map((post)=>{
+                    return post
+                })}
                 <FormCreatePost></FormCreatePost>
                 {/* List Item */}
-                {result}
+                {baiViet.map((bai)=>{
+                    return bai
+                })}
                 <Route path="/post/pagination/:page">
 
                 </Route>
                 <div className="pagination-wrapp">
                     <ul className="pagination justify-content-center">
-                    <li className="page-item "><Link className="page-link" to='/post/pagination/1'>Trang đầu</Link></li>
-                        <li className="page-item active"><Link className="page-link" to='/post/pagination/1'>1</Link></li>
-                        <li className="page-item"><Link className="page-link" to='/post/pagination/2'>2</Link></li>
-                        <li className="page-item"><Link className="page-link" to='/post/pagination/3'>3</Link></li>
-                        <li className="page-item"><Link className="page-link" to='/post/pagination/3'>Trang cuối</Link></li>
+                        {phanTrang.map((trang)=>{
+                           return trang
+                        })}
                     </ul>
                 </div>
             </div>

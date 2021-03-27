@@ -1,7 +1,6 @@
 import './App.css';
 import AslideRight from './components/AsildeRight';
 import AslideLeft from './components/AslideLeft';
-import ShowPost from "./components/showPost"
 import { BrowserRouter as Router, Route, Link, NavLink } from "react-router-dom";
 function App() {
   return (
