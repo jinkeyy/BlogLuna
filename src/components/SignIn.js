@@ -1,9 +1,9 @@
 import React,{ Component } from "react";
+import { withCookies, Cookies } from 'react-cookie';
 import apiPost from "../apis/apiPost"
 import axios from "axios"
-import { connect } from "react-redux";
-import {setToken} from "../actions/token"
-class SignIn extends Component{
+import { bake_cookie, read_cookie, delete_cookie } from 'sfcookies'
+class SignIn extends Component{  
     constructor(props){
         super(props)
         this.state = {
@@ -22,7 +22,7 @@ class SignIn extends Component{
             email: e.target.value,
      })
     }
-    SubmitLogin = (e)=>{
+    SubmitLogin = (e)=>{       
         e.preventDefault();
         let  bodyFormData = new FormData();
         bodyFormData.append("email",this.state.email)
@@ -30,17 +30,20 @@ class SignIn extends Component{
         axios({
             method: 'post',
             url: "http://127.0.0.1:8000/auth/login",
-            data: bodyFormData,           
+            data: bodyFormData, 
+            // mode: 'no-cors',
+            // withCredentials: true ,
         }).then(res=>{
-            console.log(res.data.username)
+            // console.log(res.headers["set-cookie"]);
+            bake_cookie("token", res.data.token)
             localStorage.setItem("Username",res.data.username)
-            this.props.setToken(res.data.token)
             this.setState({
                 user: res.data.username,
-            })
+            })         
             }).catch(error=>{
                 console.log("Lỗi: ")
                 console.log(error);
+                alert("Tên tài khoản mật khẩu sai...");
             })
         }
     SubmitLogout = (e)=>{
@@ -50,6 +53,7 @@ class SignIn extends Component{
             this.setState({
                 user: ""
             })
+            delete_cookie("token")
         }
     render(){
         const htmlRaw = []
@@ -89,9 +93,4 @@ class SignIn extends Component{
     }
 }
 // export default SignIn
-const mapStateToProps = (state) => {
-    return {
-      token: state.token
-    }
-}
-export default connect(mapStateToProps, { setToken })(SignIn);
+export default SignIn

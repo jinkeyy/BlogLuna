@@ -10,10 +10,10 @@ class Post extends Component{
         super(props);
         this.state = {
             nowpage :1,
-            posts:this.props.postsOfComponent,
         };
     }
     componentDidMount() {
+        console.log("componentDidMount")
         this.props.fetchPosts();
     }
     setPage = (countpost)=>{
@@ -22,7 +22,7 @@ class Post extends Component{
         })
     }   
     render(){
-        const posts = this.state.posts
+        const posts = this.props.postsOfComponent
         let { match } = this.props
         let url = match.url; 
         ////////Phân trang
@@ -47,24 +47,19 @@ class Post extends Component{
         else{
             if(this.state.nowpage === soTrang){
                 for(let i=(this.state.nowpage-1)*3;i<(soBaiViet);i++){
-                    console.log("Bài viết :"+i)
-                    baiViet.push(<PostItem onChangeDelete={()=>this.onChangeDelete()} title={posts[i].title} idPost={posts[i].id} content={posts[i].content} image={posts[i].image} createAt={posts[i].createAt} url={`${url}/${posts[i].id}`}/>)
+                    baiViet.push(<PostItem  createAt={posts[i].createAt} title={posts[i].title} idPost={posts[i].id} content={posts[i].content} image={posts[i].image} createAt={posts[i].createAt} url={`${url}/${posts[i].id}`}/>)
                 }
             }else{
                 for(let i=(this.state.nowpage-1)*3;i<(this.state.nowpage-1)*3+3;i++){
-                    console.log("Bài viết :"+i)
-                    baiViet.push(<PostItem title={posts[i].title} idPost={posts[i].id} content={posts[i].content} image={posts[i].image} createAt={posts[i].createAt} url={`${url}/${posts[i].id}`}/>)
+                    baiViet.push(<PostItem  createAt={posts[i].createAt} title={posts[i].title} idPost={posts[i].id} content={posts[i].content} image={posts[i].image} createAt={posts[i].createAt} url={`${url}/${posts[i].id}`}/>)
                 }
             }
         }
-
         let Addpost = []
         if(localStorage.getItem("Username")){
             Addpost.push(
                 <div className="row create-post-wrapper">
-                <div className="col-10">
-                </div>
-                <div className="create-post col-2">
+                <div className="create-post col-6">
                     <button type="button" className="btn btn-primary" data-toggle="modal" data-target="#create-post">Thêm bài viết mới</button>
                 </div>
             </div>        
@@ -72,7 +67,7 @@ class Post extends Component{
         }
         return(
             <div className="main-post container" >
-                <div className="space-post"></div>
+                <div className="space-post row"></div>
                 {Addpost.map((post)=>{
                     return post
                 })}
@@ -81,9 +76,9 @@ class Post extends Component{
                 {baiViet.map((bai)=>{
                     return bai
                 })}
-                <Route path="/post/pagination/:page">
+                {/* <Route path="/post/pagination/:page">
 
-                </Route>
+                </Route> */}
                 <div className="pagination-wrapp">
                     <ul className="pagination justify-content-center">
                         {phanTrang.map((trang)=>{

@@ -1,6 +1,7 @@
 import { Component } from "react";
 import { connect } from "react-redux";
 import axios from "axios"
+import { read_cookie } from "sfcookies";
 class FormCreatePost extends Component{
     constructor(props) {
         super(props)
@@ -50,8 +51,7 @@ class FormCreatePost extends Component{
         bodyFormData.append("title",this.state.title)
         bodyFormData.append("content",this.state.content)
         bodyFormData.append("image",this.state.image)
-        this.props.dispatch({type:"FETCH_TOKEN"})
-        const token = this.props.token.token
+        const token = read_cookie("token")
         console.log(token)
         axios({
             method: 'post',
@@ -118,9 +118,5 @@ class FormCreatePost extends Component{
     }
 }
 // export default FormCreatePost
-const mapStateToProps = (state) => {
-    return {
-      token: state.token
-    }
-}
-export default connect(mapStateToProps)(FormCreatePost);
+
+export default FormCreatePost

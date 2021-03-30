@@ -6,7 +6,7 @@ function App() {
   return (
     <Router>
     <div className="App container-fluid">
-          <AslideLeft/>
+          <AslideLeft />
           <AslideRight/>       
     </div>
     </Router>

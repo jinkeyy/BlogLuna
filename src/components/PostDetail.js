@@ -5,6 +5,7 @@ import apiPost from "../apis/apiPost";
 import axios from "axios"
 import { Redirect, Route  } from "react-router";
 import { Link } from "react-router-dom";
+import { read_cookie } from "sfcookies";
 class PostDetail extends Component{
     constructor(props) {
         super(props);
@@ -23,17 +24,46 @@ class PostDetail extends Component{
         }
         call()
     }
+
     deletePost = ()=>{
         console.log("redirect")
-        this.setState({
-            redirect:true
-        })
+        var{match} =this.props
+        const token = read_cookie("token")
+        const call = async () =>{
+            const res = await apiPost({
+                method:"get",
+                url:"/post/delete?id="+match.params.id,
+                headers: { Authorization: "Bearer " + token },
+            })
+            if(res.data=="success"){
+                this.setState({
+                    redirect:true
+                })
+            }else{
+                console.log("lỗi")
+            }
+        }
+        call()
     }
     render(){
         if(this.state.redirect){
-            return <Redirect to="/post" ></Redirect>
+            const location = {
+                pathname: '/post',
+                state: { id : this.state.post.id }
+              }
+            return <Redirect to={location}></Redirect>
         }
-        console.log(this.state.post.title)
+        let deletePost = []
+        if(localStorage.getItem("Username")){
+            deletePost.push(<div className="delete-post-wrapper">
+            <div className="delete-post">
+                 <button  type="button" className="btn btn-primary" data-toggle="modal" data-target="#delete-post">Xóa bài viết</button>
+            </div>
+            <div className="update-post">
+                 <button  type="button" className="btn btn-primary" data-toggle="modal" data-target="#update-post">Sửa bài viết</button>
+            </div>
+        </div>)
+        }
         return(
             <div>
                 <div className="post-detail-image" >
@@ -47,11 +77,11 @@ class PostDetail extends Component{
                         <p>{this.state.post.content}</p>
                     </div>
                 </div>
-                <div className="delete-post-wrapper">
-                    <div className="delete-post">
-                         <button  type="button" className="btn btn-primary" data-toggle="modal" data-target="#delete-post">Xóa bài viết</button>
-                    </div>
-                </div>
+                {
+                    deletePost.map((item)=>{
+                        return item
+                    })
+                }
                 <div className="modal fade" id="delete-post">
                         <div className="modal-dialog modal-sm">
                         <div className="modal-content">
@@ -74,4 +104,5 @@ class PostDetail extends Component{
         )
     }
 }
+
 export default PostDetail

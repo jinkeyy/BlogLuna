@@ -4,6 +4,7 @@ import Home from "./Home";
 import Post from "./Post";
 import PostDetail from "./PostDetail";
 import SignIn from "./SignIn"
+import About from "./About"
 class Main extends Component{
     
     render(){
@@ -18,8 +19,10 @@ class Main extends Component{
                     </Route>
                     <Route path='/post' component={mainPost}>
                     </Route>
-                    <Route path="/signin" component={SignIn}>
-                        
+                    <Route path='/about' component={About}>
+
+                    </Route>
+                    <Route path="/signin" component={SignIn}>                   
                     </Route>
                 </Switch>
             </div>

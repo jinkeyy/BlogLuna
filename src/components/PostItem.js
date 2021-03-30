@@ -18,6 +18,7 @@ class PostItem extends Component{
                     <p className="content-post">
                         {this.props.content}
                     </p>
+                    <p className="createAt-post">{this.props.createAt}</p>
                     <Link to={this.props.url} props="datalink"><button type="button" className="btn btn-info">Đọc chi tiết</button></Link>
                 </div>
             </div>
