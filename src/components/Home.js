@@ -54,7 +54,7 @@ class Home extends Component{
                     <SearchText onChangeInput={()=>this.onChangeInput} clickSearch={()=>this.clickSearch()} value={this.state.textSearch} />
                 </div>
                 <div className="home-post-wrapper row">
-                    <div className="col-xl-2"></div>
+                    <div className="col-xl-2 col-sm-2 col-0"></div>
                     {result}
                 </div>
             </div>

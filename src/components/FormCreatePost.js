@@ -13,7 +13,6 @@ class FormCreatePost extends Component{
             mess:""
         }
         this.uploadSingleFile = this.uploadSingleFile.bind(this)
-        this.upload = this.upload.bind(this)
     }
     handleSubmitted = ({ res, fields, form }) => {
         form.reset()
@@ -22,7 +21,7 @@ class FormCreatePost extends Component{
         console.log("reset")
         this.setState({
             mess:"",
-            file:","
+            file:"",
         })
         this.form.reset() 
     }

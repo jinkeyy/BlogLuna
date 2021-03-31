@@ -49,7 +49,7 @@ body{
   width: 100%;
 }
 .main-home{
-  height: 100%;
+  /* height: 100%; */
 }
 .home-title-wrapper{
   height: 30%;
@@ -209,11 +209,17 @@ body{
 .header:hover{
   background-image: linear-gradient(to left bottom, #d300ff, #d361ff, #d58eff, #dcb3ff, #e6d5ff, #ede3ff, #f5f1ff, #ffffff, #ffffff, #ffffff, #ffffff, #ffffff);
 }
+.home-post-wrapper{
+  margin-bottom: 200px;
+}
 @media only screen and (max-width :768px) {
   .aslide-left{
     width: 0%;
   }
   .aslide-right{
     width: 100%;
+  }
+  .search-text{
+    width: 80%;
   }
 }
