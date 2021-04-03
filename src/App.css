@@ -123,10 +123,12 @@ body{
   display: flex;
   justify-content: center;
   height: 70px;
+  margin-bottom: 50px;
 }
 .post-detail-content{
   display: flex;
   justify-content: center;
+  margin-bottom: 200px;
 }
 .post-detail-title h3{
   width: 80%;
