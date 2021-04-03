@@ -1,0 +1,20 @@
+{
+  "files": {
+    "main.css": "/BlogLuna/static/css/main.f410b857.chunk.css",
+    "main.js": "/BlogLuna/static/js/main.300bba1c.chunk.js",
+    "main.js.map": "/BlogLuna/static/js/main.300bba1c.chunk.js.map",
+    "runtime-main.js": "/BlogLuna/static/js/runtime-main.632852d4.js",
+    "runtime-main.js.map": "/BlogLuna/static/js/runtime-main.632852d4.js.map",
+    "static/js/2.008f5836.chunk.js": "/BlogLuna/static/js/2.008f5836.chunk.js",
+    "static/js/2.008f5836.chunk.js.map": "/BlogLuna/static/js/2.008f5836.chunk.js.map",
+    "index.html": "/BlogLuna/index.html",
+    "static/css/main.f410b857.chunk.css.map": "/BlogLuna/static/css/main.f410b857.chunk.css.map",
+    "static/js/2.008f5836.chunk.js.LICENSE.txt": "/BlogLuna/static/js/2.008f5836.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.632852d4.js",
+    "static/js/2.008f5836.chunk.js",
+    "static/css/main.f410b857.chunk.css",
+    "static/js/main.300bba1c.chunk.js"
+  ]
+}
